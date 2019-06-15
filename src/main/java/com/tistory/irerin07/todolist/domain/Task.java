@@ -16,13 +16,13 @@ public class Task {
     private long id;
     private String title;
     private String content;
-    private Date regDate;
-    private Date finDate;
+    private Date regdate;
+    private Date findate;
     private long taskOrder;
     private Character completed;
 
     public Task(){
-        regDate = new Date();
-        finDate = new Date();
+        regdate = new Date();
+        findate = new Date();
     }
 }

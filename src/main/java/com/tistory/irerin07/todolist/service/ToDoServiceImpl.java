@@ -15,7 +15,9 @@ public class ToDoServiceImpl implements ToDoService {
     @Override
     public List<Task> getTasks() {
         List<Task> tasks = null;
-        tasks = toDoRepository.findAll();
+//        tasks = toDoRepository.findAll();
+        //Task를 important 체크 된 것들을 위로, 나머지는 아래로 정렬 시켜주기 위해 findAll 대신 getAllTasks를 사용
+        tasks = toDoRepository.getAllTasks();
         return tasks;
     }
 

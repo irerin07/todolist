@@ -19,7 +19,8 @@ public class Task {
     private Date regdate;
     private Date findate;
     private long taskOrder;
-    private Character completed;
+    private char completed;
+    private int important;
 
     public Task(){
         regdate = new Date();

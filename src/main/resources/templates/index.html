@@ -13,28 +13,29 @@
 <div id="myDIV" class="header">
     <h2>My To Do List</h2>
     <input type="text" id="myInput" placeholder="Title...">
-    <span onclick="newElement()" class="button **is-large is-focused is-success is-rounded**">Add</span>
+    <span onclick="newElement()" class="button **is-large is-focused is-success is-rounded**"
+          th:onclick="addtask()">Add</span>
 </div>
 <div id="list">
-<ul id="myUL">
-    <!--<li>Hit the gym</li>-->
-    <!--<li class="checked">Pay bills</li>-->
-    <!--<li>Meet George</li>-->
-    <!--<li>Buy eggs</li>-->
-    <!--<li>Read a book</li>-->
-    <!--<li>Organize office</li>-->
-</ul>
+    <ul id="myUL">
+        <!--<li>Hit the gym</li>-->
+        <!--<li class="checked">Pay bills</li>-->
+        <!--<li>Meet George</li>-->
+        <!--<li>Buy eggs</li>-->
+        <!--<li>Read a book</li>-->
+        <!--<li>Organize office</li>-->
+    </ul>
 </div>
 <script type="text/javascript" th:src="@{/js/script.js}"></script>
 <script th:inline="javascript">
     /*<![CDATA[*/
-    $( document ).ready(function() {
+    $(document).ready(function () {
         $.ajax({
-            url: "/api/getAllTasks",
+            url: "/api/tasks",
             type: "get",
             success: function (data) {
                 console.log(data);
-                for(var i =0;i < data.length-1;i++) {
+                for (var i = 0; i < data.length - 1; i++) {
                     var myUL = $('<li>' + data[i].title + '<span class="close">×</span></li>');
                     myUL.appendTo($('#list ul'));
                 }
@@ -48,6 +49,20 @@
             }
         })
     });
+
+    function addtask() {
+        $.ajax({
+            url: "/api/newtasks",
+            type: "post",
+            success: function (data) {
+
+            },
+            error: function (err) {
+
+            }
+        })
+    }
+
     /*]]>*/
 </script>
 </body>

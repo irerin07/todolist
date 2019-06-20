@@ -4,6 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <script src="/webjars/jquery/3.3.1-2/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.6.2/css/bulma.min.css">
     <link rel="stylesheet" th:href="@{../../css/common.css}"/>
     <title>To Do List</title>
@@ -15,6 +17,13 @@
     <input type="text" id="myInput" placeholder="Title...">
     <span onclick="newElement()" class="button **is-large is-focused is-success is-rounded**"
           th:onclick="addtask()">Add</span>
+</div>
+<div class="container">
+<div class="panel-group" id="accordion">
+    <div id="coll" class="panel panel-default">
+
+    </div>
+</div>
 </div>
 <div id="list">
     <ul id="myUL">
@@ -36,8 +45,19 @@
             success: function (data) {
                 console.log(data);
                 for (var i = 0; i < data.length - 1; i++) {
-                    var myUL = $('<li>' + data[i].title + '<span class="close">×</span></li>');
-                    myUL.appendTo($('#list ul'));
+                    var coll = $('<div class="panel-heading">\n' +
+                        '            <h4 class="panel-title">\n' +
+                        '                <a data-toggle="collapse" data-parent="#accordion" href="#'+data[i].id+'">' + data[i].title + '</a>\n' +
+                        '            </h4>\n' +
+                        '        </div>\n' +
+                        '        <div id="' + data[i].id + '" class="panel-collapse collapse">\n' +
+                        '            <div class="panel-body">메모: '+data[i].content+'</div>\n' +
+                        '            <div class="panel-body">등록일: '+data[i].regdate+'</div>\n' +
+                        '            <div class="panel-body">언제까지: '+data[i].findate+'</div>\n' +
+                        '        </div>');
+                    coll.appendTo($('#coll'))
+                    // var myUL = $('<li>' + data[i].title + '<span class="close">×</span></li>');
+                    // myUL.appendTo($('#list ul'));
                 }
             },
             error: function (err) {
@@ -62,6 +82,8 @@
             }
         })
     }
+
+
 
     /*]]>*/
 </script>

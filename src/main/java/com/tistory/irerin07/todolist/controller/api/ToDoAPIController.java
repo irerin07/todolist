@@ -25,9 +25,9 @@ public class ToDoAPIController {
         List<Task> allTasks = toDoService.getTasks();
         return new ResponseEntity(allTasks, HttpStatus.OK);
     }
-    @PostMapping("/newtasks")
-    public ResponseEntity newTasks(){
-        return new ResponseEntity(allTasks, HttpStatus.OK);
-    }
+//    @PostMapping("/newtasks")
+//    public ResponseEntity newTasks(){
+//        return new ResponseEntity(allTasks, HttpStatus.OK);
+//    }
 
 }

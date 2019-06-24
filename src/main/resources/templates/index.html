@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es" xmlns="http://www.w3.org/1999/xhtml"
+<html lang="kr" xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
@@ -27,12 +27,6 @@
 </div>
 <div id="list">
     <ul id="myUL">
-        <!--<li>Hit the gym</li>-->
-        <!--<li class="checked">Pay bills</li>-->
-        <!--<li>Meet George</li>-->
-        <!--<li>Buy eggs</li>-->
-        <!--<li>Read a book</li>-->
-        <!--<li>Organize office</li>-->
     </ul>
 </div>
 <script type="text/javascript" th:src="@{/js/script.js}"></script>
@@ -51,9 +45,9 @@
                         '            </h4>\n' +
                         '        </div>\n' +
                         '        <div id="' + data[i].id + '" class="panel-collapse collapse">\n' +
-                        '            <div class="panel-body">메모: '+data[i].content+'</div>\n' +
-                        '            <div class="panel-body">등록일: '+data[i].regdate+'</div>\n' +
-                        '            <div class="panel-body">언제까지: '+data[i].findate+'</div>\n' +
+                        '            <div class="panel-body">메모: '+data[i].content+'<button class="btn btn-dark" style="float: right;">수정</button> </div>\n' +
+                        '            <div class="panel-body">등록일: '+data[i].regdate+'<button class="btn btn-dark" style="float: right;">수정</button> </div>\n' +
+                        '            <div class="panel-body">언제까지: '+data[i].findate+'<button class="btn btn-dark" style="float: right;">수정</button> </div>\n' +
                         '        </div>');
                     coll.appendTo($('#coll'))
                     // var myUL = $('<li>' + data[i].title + '<span class="close">×</span></li>');

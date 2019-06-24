@@ -1,6 +1,7 @@
 package com.tistory.irerin07.todolist.service;
 
 import com.tistory.irerin07.todolist.domain.Task;
+import com.tistory.irerin07.todolist.dto.TaskDto;
 import com.tistory.irerin07.todolist.repository.ToDoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -22,7 +23,13 @@ public class ToDoServiceImpl implements ToDoService {
     }
 
     @Override
-    public void addTodo(Task task) {
+    public void addTodo(TaskDto taskDto) {
+        Task task = new Task();
+        task.setTitle(taskDto.getTitle());
+        task.setContent(taskDto.getContent());
+        task.setRegdate(taskDto.getRegdate());
+        task.setFindate(taskDto.getFindate());
+        task.setImportant(0);
         toDoRepository.save(task);
     }
 

@@ -2,6 +2,7 @@ package com.tistory.irerin07.todolist.controller.api;
 
 import com.tistory.irerin07.todolist.domain.Task;
 import com.tistory.irerin07.todolist.dto.TaskDto;
+import com.tistory.irerin07.todolist.dto.TaskPostResultDto;
 import com.tistory.irerin07.todolist.service.ToDoService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,9 +26,16 @@ public class ToDoAPIController {
         List<Task> allTasks = toDoService.getTasks();
         return new ResponseEntity(allTasks, HttpStatus.OK);
     }
-//    @PostMapping("/newtasks")
-//    public ResponseEntity newTasks(){
-//        return new ResponseEntity(allTasks, HttpStatus.OK);
-//    }
+    @PostMapping("/newtasks")
+    public ResponseEntity newTasks(@RequestBody TaskDto taskDto){
+        TaskPostResultDto taskPostResultDto = new TaskPostResultDto();
+        if(taskDto.getTitle().equals("")){
+            taskPostResultDto.setResult("타이틀을 작성해주세요.");
+            return new ResponseEntity(taskPostResultDto, HttpStatus.NOT_FOUND);
+        }
+        toDoService.addTodo(taskDto);
+        taskPostResultDto.setResult("작성완료");
+        return new ResponseEntity(taskPostResultDto, HttpStatus.OK);
+    }
 
 }

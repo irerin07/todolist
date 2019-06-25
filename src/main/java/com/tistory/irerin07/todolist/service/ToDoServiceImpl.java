@@ -27,8 +27,6 @@ public class ToDoServiceImpl implements ToDoService {
         Task task = new Task();
         task.setTitle(taskDto.getTitle());
         task.setContent(taskDto.getContent());
-        task.setRegdate(taskDto.getRegdate());
-        task.setFindate(taskDto.getFindate());
         task.setImportant(0);
         toDoRepository.save(task);
     }

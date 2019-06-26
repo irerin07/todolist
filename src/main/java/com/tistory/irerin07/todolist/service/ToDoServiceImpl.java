@@ -14,6 +14,12 @@ public class ToDoServiceImpl implements ToDoService {
     ToDoRepository toDoRepository;
 
     @Override
+    public Task getTask(long id){
+        Task task = toDoRepository.getOne(id);
+        return task;
+    }
+
+    @Override
     public List<Task> getTasks() {
         List<Task> tasks = null;
 //        tasks = toDoRepository.findAll();
@@ -26,14 +32,15 @@ public class ToDoServiceImpl implements ToDoService {
     public void addTodo(TaskDto taskDto) {
         Task task = new Task();
         task.setTitle(taskDto.getTitle());
-        task.setContent(taskDto.getContent());
+        task.setContent("");
         task.setImportant(0);
         toDoRepository.save(task);
     }
 
     @Override
-    public void deleteTodo() {
-
+    public void deleteTodo(long id) {
+        Task task = toDoRepository.getOne(id);
+        toDoRepository.delete(task);
     }
 
     @Override

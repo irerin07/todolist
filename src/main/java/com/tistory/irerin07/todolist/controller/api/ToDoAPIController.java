@@ -11,6 +11,12 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import javax.xml.ws.Response;
+import java.security.Principal;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.Date;
 import java.util.List;
 
 @RestController
@@ -38,4 +44,16 @@ public class ToDoAPIController {
         return new ResponseEntity(taskPostResultDto, HttpStatus.OK);
     }
 
+    @DeleteMapping(value = "/{taskId}")
+    public ResponseEntity deleteTask(@PathVariable(value = "taskId")long id){
+        TaskPostResultDto taskPostResultDto = new TaskPostResultDto();
+        Task task = toDoService.getTask(id);
+        if(task == null){
+            taskPostResultDto.setResult("없는 투두 내역");
+            return new ResponseEntity(taskPostResultDto, HttpStatus.NOT_FOUND);
+        }
+        toDoService.deleteTodo(id);
+        taskPostResultDto.setResult("삭제완료");
+        return new ResponseEntity(taskPostResultDto, HttpStatus.OK);
+    }
 }

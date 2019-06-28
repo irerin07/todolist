@@ -14,7 +14,7 @@
 </head>
 <body>
 
-<div id="myDIV" class="header">
+<div id="myDIV" class="header container">
     <input type="text" id="myInput" placeholder="Title...">
     <span onclick="newElement()" class="button **is-large is-focused is-success is-rounded**"
           th:onclick="addtask()">Add</span>
@@ -26,15 +26,6 @@
         </div>
     </div>
 </div>
-
-<!--<div id="list">-->
-    <!--<ul id="myUL">-->
-        <!--<li>a</li>-->
-        <!--<li>a</li>-->
-        <!--<li>a</li>-->
-        <!--<li>a</li>-->
-    <!--</ul>-->
-<!--</div>-->
 
 <script type="text/javascript" th:src="@{/js/script.js}"></script>
 <script th:inline="javascript">
@@ -115,7 +106,6 @@
         })
 
     }
-
 
     /*]]>*/
 </script>

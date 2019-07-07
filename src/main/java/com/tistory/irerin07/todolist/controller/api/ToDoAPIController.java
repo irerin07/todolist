@@ -56,4 +56,14 @@ public class ToDoAPIController {
         taskPostResultDto.setResult("삭제완료");
         return new ResponseEntity(taskPostResultDto, HttpStatus.OK);
     }
+
+    @PutMapping
+    public ResponseEntity updateTask(@RequestBody TaskDto taskDto){
+        TaskPostResultDto taskPostResultDto = new TaskPostResultDto();
+        System.out.println(taskDto.getTitle());
+        System.out.println(taskDto.getId());
+        toDoService.modifyTodo();
+
+        return new ResponseEntity(taskPostResultDto, HttpStatus.OK);
+    }
 }

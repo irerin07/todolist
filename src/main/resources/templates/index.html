@@ -33,7 +33,7 @@
             <div class="modal-header">
             </div>
             <div class="modal-body">
-                <form autocomplete="off">
+                <form class="updateForm" autocomplete="off">
                     <div class="form-group">
                         <label for="title">제목 수정</label>
                         <input class="form-control" id="title" aria-describedby="emailHelp">
@@ -55,7 +55,7 @@
                 </form>
             </div>
             <div class="modal-footer">
-                <button type="submit" class="btn btn-primary">수정하기</button>
+                <button id="form-submit" type="submit" class="btn btn-primary">수정하기</button>
                 <button class="btn btn-default" data-dismiss="modal">닫기</button>
             </div>
         </div><!-- /.modal-content -->
@@ -147,20 +147,31 @@
     function updateTask(taskid) {
         let id = taskid;
         $('#alertModal').modal('show');
-        $.ajax({
-            type: 'put',
-            url: '/api/update' + id,
-            async: true,
-            contentType: "application/json",
-            success: function (data) {
-                console.log('업데이트 완료');
-                document.getElementById("myInput").value = "";
-                loadTasks();
+        $('#form-submit').on('click', function (e) {
+            var newtitle = document.getElementById(title).value;
+            var newcontent = document.getElementById(content).value;
 
-            }
+            var data = {
+                title           : newtitle,
+                content       : newcontent,
 
+            };
+            var jsonData = JSON.stringify(data);
+            $.ajax({
+                type: 'put',
+                url: '/api',
+                data: jsonData,
+                async: true,
+                contentType: "application/json",
+                success: function (data) {
+                    console.log('업데이트 완료');
+                    document.getElementById("myInput").value = "";
+                    loadTasks();
+                },error: function(err){
+                    console.log(err);
+                }
+            })
         })
-
     }
 
     /*]]>*/

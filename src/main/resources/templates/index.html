@@ -36,7 +36,7 @@
             <div class="modal-header">
             </div>
             <div class="modal-body">
-                <form autocomplete="off">
+                <form class="updateForm" autocomplete="off">
                     <div class="form-group">
                         <label for="newtitle">제목 수정</label>
                         <input class="form-control" id="newtitle">
@@ -58,7 +58,7 @@
                 </form>
             </div>
             <div class="modal-footer">
-                <button type="submit" class="btn btn-primary">수정하기</button>
+                <button id="form-submit" type="submit" class="btn btn-primary">수정하기</button>
                 <button class="btn btn-default" data-dismiss="modal">닫기</button>
             </div>
         </div><!-- /.modal-content -->
@@ -163,9 +163,7 @@
                 loadTasks();
 
             }
-
         })
-
     }
 
     /*]]>*/

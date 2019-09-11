@@ -30,6 +30,36 @@
 
 </div>
 
+<div id="addsuccessmodal" class="modal fade" style="z-index: 9999;">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+            </div>
+            <div class="modal-body">
+                ToDo가 추가되었습니다!
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-default" data-dismiss="modal">닫기</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+<div id="deletemodal" class="modal fade" style="z-index: 9999;">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+            </div>
+            <div class="modal-body">
+                삭제되었습니다!
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-default" data-dismiss="modal">닫기</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
 <div id="alertModal" class="modal fade" style="z-index: 9999;">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -43,7 +73,7 @@
                         <!--<small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>-->
                     </div>
                     <div class="form-group">
-                        <label for="newcontent">내용 수정</label>
+                        <label for="newcontent">메모 수정</label>
                         <input class="form-control" id="newcontent">
                         <!--<small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>-->
                     </div>
@@ -122,6 +152,7 @@
             contentType: "application/json",
             success: function (data) {
                 document.getElementById("myInput").value = "";
+                $('#addsuccessmodal').modal('show');
                 loadTasks();
             },
             error: function (err) {
@@ -138,11 +169,10 @@
             contentType: "application/json",
             success: function (data) {
                 console.log('삭제완료');
+                $('#deletemodal').modal('show');
                 document.getElementById("myInput").value = "";
                 loadTasks();
-
             }
-
         })
 
     }
